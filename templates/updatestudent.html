@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Update Student</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <script src="https://kit.fontawesome.com/d69fcd5e58.js" crossorigin="anonymous"></script>
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+        integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="../static/dashboardBootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="../static/dashboard.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner"
+            class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+        <!-- Sidebar Start -->
+        <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="#" class="navbar-brand mx-4 mb-3">
+                    <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>Admin</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                        <img class="rounded-circle" src="../static/img/user.jpg" alt=""
+                            style="width: 40px; height: 40px;">
+                        <div
+                            class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1">
+                        </div>
+                    </div>
+                    <div class="ms-3">
+                        <h6 class="mb-0">FAIZAN</h6>
+                        <span>Admin</span>
+                    </div>
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="/adminDashboard" class="nav-item nav-link"><i
+                            class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="/addRoom" class="nav-item nav-link"><i class="fa fa-solid fa-plus me-2"></i></i>Add
+                        Room</a>
+                    <a href="/updateRoom" class="nav-item nav-link"><i
+                            class="fa fa-regular fa-pen-to-square me-2"></i>Update Room</a>
+                    <a href="/showRooms" class="nav-item nav-link"><i class="fa fa-solid fa-display me-2"></i>Show
+                        Rooms</a>
+                    <a href="/showRequest" class="nav-item nav-link"><i class="fa-regular fa-bell me-2"></i>Request</a>
+                    <a href="/showBookings" class="nav-item nav-link"><i class="fa-solid fa-book me-2"></i>Bookings</a>
+                    <a href="/delstudent" class="nav-item nav-link"><i class="fa-solid fa-minus  me-2"></i>Delete
+                        Student</a>
+                    <a href="/updatestudent" class="nav-item nav-link active"><i
+                            class="fa fa-regular fa-pen-to-square me-2"></i>Update Student</a>
+                    <a href="/deleteroom " class="nav-item nav-link"><i class="fa-solid fa-minus  me-2"></i>Delete
+                        Room</a>
+                    <a href="/attendance " class="nav-item nav-link"><i
+                            class="fa-solid fa-clipboard-user me-2"></i>Attendance</a>
+                    <a href="/showAtt " class="nav-item nav-link"><i class="fa fa-solid fa-display me-2"></i>Show
+                        Attend</a>
+                    <a href="/sendMail " class="nav-item nav-link"><i class="fa-solid fa-envelope me-2"></i>Send
+                        Mail</a>
+                    <a href="/changeRequest " class="nav-item nav-link"><i class="fa-solid fa-bolt me-2"></i>Change
+                        Req</a>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+        <!-- Content Start -->
+        <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="#" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <h2 class="text-primary mb-0">
+                    &nbsp;&nbsp;Update student
+                </h2>
+                <div class="navbar-nav align-items-center ms-auto">
+
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="../static/img/user.jpg" alt=""
+                                style="width: 40px; height: 40px;">
+                            <span class="d-none d-lg-inline-flex">Faizan</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="/adminlogout" class="dropdown-item">Log Out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+            <!-- Footer Start -->
+
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row img-slider" id="form">
+                        <form id="updatestudent">
+
+                            <label>EMAIL:
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" name="email" id="email"><br>
+                            <label>ROOM NO:
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <select id="roomNo" name="roomNo">
+                                <option value="">Select Room</option>
+                            </select><br>
+                            <label>NAME:
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" name="name" id="name"><br>
+
+
+                            <label>GUARDIAN NAME: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" name="gname" id="gname"><br>
+                            <label>GUARDIAN EMAIL: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" name="gcontact" id="gcontact"><br>
+
+                            <label>PHONE NO:
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" name="phone" id="phone"><br>
+                            <label>CINC:
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <input type="text" name="cnic" id="cnic"><br>
+                            <label>FOOD
+                                STATUS:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </label>
+                            <select id="food" name="food">
+                                <option value="">Food Status</option>
+                                <option value="yes">YES</option>
+                                <option value="no">NO</option>
+                            </select><br>
+                            <label>CITY:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <select class="general" id="city" name="city">
+                                <br>
+                                <option value="">Select City</option>
+                                <option value="Ahmadpur Sial">Ahmadpur Sial</option>
+                                <option value="Ahmedpur East">Ahmedpur East</option>
+                                <option value="Alipur Chatha">Alipur Chatha</option>
+                                <option value="Arifwala">Arifwala</option>
+                                <option value="Attock Tehsil">Attock Tehsil</option>
+                                <option value="Baddomalhi">Baddomalhi</option>
+                                <option value="Bahawalnagar">Bahawalnagar</option>
+                                <option value="Bahawalpur">Bahawalpur</option>
+                                <option value="Bakhri Ahmad Khan">Bakhri Ahmad Khan</option>
+                                <option value="Basirpur">Basirpur</option>
+                                <option value="Basti Dosa">Basti Dosa</option>
+                                <option value="Begowala">Begowala</option>
+                                <option value="Bhakkar">Bhakkar</option>
+                                <option value="Bhalwal">Bhalwal</option>
+                                <option value="Bhawana">Bhawana</option>
+                                <option value="Bhera">Bhera</option>
+                                <option value="Bhopalwala">Bhopalwala</option>
+                                <option value="Burewala">Burewala</option>
+                                <option value="Chak Azam Saffo">Chak Azam Saffo</option>
+                                <option value="Chak Jhumra">Chak Jhumra</option>
+                                <option value="Chak One Hundred Twenty Nine Left">Chak One Hundred Twenty Nine Left
+                                </option>
+                                <option value="Chak Thirty-one -Eleven Left">Chak Thirty-one -Eleven Left</option>
+                                <option value="Chak Two Hundred Forty-Nine TDA">Chak Two Hundred Forty-Nine TDA</option>
+                                <option value="Chakwal">Chakwal</option>
+                                <option value="Chawinda">Chawinda</option>
+                                <option value="Chichawatni">Chichawatni</option>
+                                <option value="Chiniot">Chiniot</option>
+                                <option value="Chishtian">Chishtian</option>
+                                <option value="Choa Saidanshah">Choa Saidanshah</option>
+                                <option value="Chuhar Kana">Chuhar Kana</option>
+                                <option value="Chunian">Chunian</option>
+                                <option value="Daira Din Panah">Daira Din Panah</option>
+                                <option value="Dajal">Dajal</option>
+                                <option value="Dandot RS">Dandot RS</option>
+                                <option value="Darya Khan">Darya Khan</option>
+                                <option value="Daska">Daska</option>
+                                <option value="Daud Khel">Daud Khel</option>
+                                <option value="Daultala">Daultala</option>
+                                <option value="Dera Ghazi Khan">Dera Ghazi Khan</option>
+                                <option value="Dhanot">Dhanot</option>
+                                <option value="Dhaunkal">Dhaunkal</option>
+                                <option value="Dhok Awan">Dhok Awan</option>
+                                <option value="Dijkot">Dijkot</option>
+                                <option value="Dinan Bashnoian Wala">Dinan Bashnoian Wala</option>
+                                <option value="Dinga">Dinga</option>
+                                <option value="Dipalpur">Dipalpur</option>
+                                <option value="Dullewala">Dullewala</option>
+                                <option value="Dunga Bunga">Dunga Bunga</option>
+                                <option value="Dunyapur">Dunyapur</option>
+                                <option value="Eminabad">Eminabad</option>
+                                <option value="Faisalabad">Faisalabad</option>
+                                <option value="Faqirwali">Faqirwali</option>
+                                <option value="Faruka">Faruka</option>
+                                <option value="Fazilpur">Fazilpur</option>
+                                <option value="Ferozewala">Ferozewala</option>
+                                <option value="Fort Abbas">Fort Abbas</option>
+                                <option value="Garh Maharaja">Garh Maharaja</option>
+                                <option value="Gojra">Gojra</option>
+                                <option value="Gujar Khan">Gujar Khan</option>
+                                <option value="Gujranwala">Gujranwala</option>
+                                <option value="Gujranwala Division">Gujranwala Division</option>
+                                <option value="Gujrat">Gujrat</option>
+                                <option value="Hadali">Hadali</option>
+                                <option value="Hafizabad">Hafizabad</option>
+                                <option value="Harnoli">Harnoli</option>
+                                <option value="Harunabad">Harunabad</option>
+                                <option value="Hasan Abdal">Hasan Abdal</option>
+                                <option value="Hasilpur">Hasilpur</option>
+                                <option value="Haveli Lakha">Haveli Lakha</option>
+                                <option value="Hazro">Hazro</option>
+                                <option value="Hujra Shah Muqeem">Hujra Shah Muqeem</option>
+                                <option value="Jahanian Shah">Jahanian Shah</option>
+                                <option value="Jalalpur Jattan">Jalalpur Jattan</option>
+                                <option value="Jalalpur Pirwala">Jalalpur Pirwala</option>
+                                <option value="Jampur">Jampur</option>
+                                <option value="Jand">Jand</option>
+                                <option value="Jandiala Sher Khan">Jandiala Sher Khan</option>
+                                <option value="Jaranwala">Jaranwala</option>
+                                <option value="Jatoi Shimali">Jatoi Shimali</option>
+                                <option value="Jauharabad">Jauharabad</option>
+                                <option value="Jhang">Jhang</option>
+                                <option value="Jhang Sadar">Jhang Sadar</option>
+                                <option value="Jhawarian">Jhawarian</option>
+                                <option value="Jhelum">Jhelum</option>
+                                <option value="Kabirwala">Kabirwala</option>
+                                <option value="Kahna Nau">Kahna Nau</option>
+                                <option value="Kahuta">Kahuta</option>
+                                <option value="Kalabagh">Kalabagh</option>
+                                <option value="Kalaswala">Kalaswala</option>
+                                <option value="Kaleke Mandi">Kaleke Mandi</option>
+                                <option value="Kallar Kahar">Kallar Kahar</option>
+                                <option value="Kalur Kot">Kalur Kot</option>
+                                <option value="Kamalia">Kamalia</option>
+                                <option value="Kamar Mushani">Kamar Mushani</option>
+                                <option value="Kamoke">Kamoke</option>
+                                <option value="Kamra">Kamra</option>
+                                <option value="Kanganpur">Kanganpur</option>
+                                <option value="Karor">Karor</option>
+                                <option value="Kasur">Kasur</option>
+                                <option value="Keshupur">Keshupur</option>
+                                <option value="Khairpur Tamiwali">Khairpur Tamiwali</option>
+                                <option value="Khandowa">Khandowa</option>
+                                <option value="Khanewal">Khanewal</option>
+                                <option value="Khanga Dogran">Khanga Dogran</option>
+                                <option value="Khangarh">Khangarh</option>
+                                <option value="Khanpur">Khanpur</option>
+                                <option value="Kharian">Kharian</option>
+                                <option value="Khewra">Khewra</option>
+                                <option value="Khurrianwala">Khurrianwala</option>
+                                <option value="Khushab">Khushab</option>
+                                <option value="Kohror Pakka">Kohror Pakka</option>
+                                <option value="Kot Addu Tehsil">Kot Addu Tehsil</option>
+                                <option value="Kot Ghulam Muhammad">Kot Ghulam Muhammad</option>
+                                <option value="Kot Mumin">Kot Mumin</option>
+                                <option value="Kot Radha Kishan">Kot Radha Kishan</option>
+                                <option value="Kot Rajkour">Kot Rajkour</option>
+                                <option value="Kot Samaba">Kot Samaba</option>
+                                <option value="Kot Sultan">Kot Sultan</option>
+                                <option value="Kotli Loharan">Kotli Loharan</option>
+                                <option value="Kundian">Kundian</option>
+                                <option value="Kunjah">Kunjah</option>
+                                <option value="Ladhewala Waraich">Ladhewala Waraich</option>
+                                <option value="Lahore">Lahore</option>
+                                <option value="Lala Musa">Lala Musa</option>
+                                <option value="Lalian">Lalian</option>
+                                <option value="Layyah">Layyah</option>
+                                <option value="Layyah District">Layyah District</option>
+                                <option value="Liliani">Liliani</option>
+                                <option value="Lodhran">Lodhran</option>
+                                <option value="Mailsi">Mailsi</option>
+                                <option value="Malakwal">Malakwal</option>
+                                <option value="Malakwal City">Malakwal City</option>
+                                <option value="Mamu Kanjan">Mamu Kanjan</option>
+                                <option value="Mananwala">Mananwala</option>
+                                <option value="Mandi Bahauddin">Mandi Bahauddin</option>
+                                <option value="Mandi Bahauddin District">Mandi Bahauddin District</option>
+                                <option value="Mangla">Mangla</option>
+                                <option value="Mankera">Mankera</option>
+                                <option value="Mehmand Chak">Mehmand Chak</option>
+                                <option value="Mian Channun">Mian Channun</option>
+                                <option value="Mianke Mor">Mianke Mor</option>
+                                <option value="Mianwali">Mianwali</option>
+                                <option value="Minchinabad">Minchinabad</option>
+                                <option value="Mitha Tiwana">Mitha Tiwana</option>
+                                <option value="Moza Shahwala">Moza Shahwala</option>
+                                <option value="Multan">Multan</option>
+                                <option value="Multan District">Multan District</option>
+                                <option value="Muridke">Muridke</option>
+                                <option value="Murree">Murree</option>
+                                <option value="Mustafabad">Mustafabad</option>
+                                <option value="Muzaffargarh">Muzaffargarh</option>
+                                <option value="Nankana Sahib">Nankana Sahib</option>
+                                <option value="Narang Mandi">Narang Mandi</option>
+                                <option value="Narowal">Narowal</option>
+                                <option value="Naushahra Virkan">Naushahra Virkan</option>
+                                <option value="Nazir Town">Nazir Town</option>
+                                <option value="Okara">Okara</option>
+                                <option value="Pakki Shagwanwali">Pakki Shagwanwali</option>
+                                <option value="Pakpattan">Pakpattan</option>
+                                <option value="Pasrur">Pasrur</option>
+                                <option value="Pattoki">Pattoki</option>
+                                <option value="Phalia">Phalia</option>
+                                <option value="Pind Dadan Khan">Pind Dadan Khan</option>
+                                <option value="Pindi Bhattian">Pindi Bhattian</option>
+                                <option value="Pindi Gheb">Pindi Gheb</option>
+                                <option value="Pir Mahal">Pir Mahal</option>
+                                <option value="Qadirpur Ran">Qadirpur Ran</option>
+                                <option value="Qila Didar Singh">Qila Didar Singh</option>
+                                <option value="Rabwah">Rabwah</option>
+                                <option value="Rahim Yar Khan">Rahim Yar Khan</option>
+                                <option value="Rahimyar Khan District">Rahimyar Khan District</option>
+                                <option value="Raiwind">Raiwind</option>
+                                <option value="Raja Jang">Raja Jang</option>
+                                <option value="Rajanpur">Rajanpur</option>
+                                <option value="Rasulnagar">Rasulnagar</option>
+                                <option value="Rawalpindi">Rawalpindi</option>
+                                <option value="Rawalpindi District">Rawalpindi District</option>
+                                <option value="Renala Khurd">Renala Khurd</option>
+                                <option value="Rojhan">Rojhan</option>
+                                <option value="Sadiqabad">Sadiqabad</option>
+                                <option value="Sahiwal">Sahiwal</option>
+                                <option value="Sambrial">Sambrial</option>
+                                <option value="Sangla Hill">Sangla Hill</option>
+                                <option value="Sanjwal">Sanjwal</option>
+                                <option value="Sarai Alamgir">Sarai Alamgir</option>
+                                <option value="Sarai Sidhu">Sarai Sidhu</option>
+                                <option value="Sargodha">Sargodha</option>
+                                <option value="Shahkot Tehsil">Shahkot Tehsil</option>
+                                <option value="Shahpur">Shahpur</option>
+                                <option value="Shahr Sultan">Shahr Sultan</option>
+                                <option value="Shakargarh">Shakargarh</option>
+                                <option value="Sharqpur">Sharqpur</option>
+                                <option value="Sheikhupura">Sheikhupura</option>
+                                <option value="Shorkot">Shorkot</option>
+                                <option value="Shujaabad">Shujaabad</option>
+                                <option value="Sialkot">Sialkot</option>
+                                <option value="Sillanwali">Sillanwali</option>
+                                <option value="Sodhra">Sodhra</option>
+                                <option value="Sukheke Mandi">Sukheke Mandi</option>
+                                <option value="Surkhpur">Surkhpur</option>
+                                <option value="Talagang">Talagang</option>
+                                <option value="Talamba">Talamba</option>
+                                <option value="Tandlianwala">Tandlianwala</option>
+                                <option value="Taunsa">Taunsa</option>
+                                <option value="Toba Tek Singh">Toba Tek Singh</option>
+                                <option value="Umerkot">Umerkot</option>
+                                <option value="Vihari">Vihari</option>
+                                <option value="Wah">Wah</option>
+                                <option value="Warburton">Warburton</option>
+                                <option value="Wazirabad">Wazirabad</option>
+                                <option value="West Punjab">West Punjab</option>
+                                <option value="Yazman">Yazman</option>
+                                <option value="Zafarwal">Zafarwal</option>
+                                <option value="Zahir Pir">Zahir Pir</option>
+                            </select><br>
+                            <label>STATE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <select class="general" id="country-state" name="country">
+                                <option value="JK">Azad Kashmir</option>
+                                <option value="BA">Balochistan</option>
+                                <option value="TA">Federally Administered Tribal Areas</option>
+                                <option value="GB">Gilgit-Baltistan</option>
+                                <option value="IS">Islamabad Capital Territory</option>
+                                <option value="KP">Khyber Pakhtunkhwa</option>
+                                <option value="PB">Punjab</option>
+                                <option value="SD">Sindh</option>
+                            </select><br>
+                            <input class="btn form-btn" id="submit" type="button" value="UPDATE">
+                            <p id="success" class="success">
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">Faizan Hostel Association</a>, All Right Reserved.
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            Designed By : TEAM FAIZAN
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="../static/dashboard.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // click on button submit
+            $("#submit").on('click', function () {
+                // send ajax
+                var formdata = $("#updatestudent").serializeArray();
+                var data = {};
+                $(formdata).each(function (index, obj) {
+                    if (obj.value == "" && obj.name == "food") {
+                        data["food"] = ""
+                    } else if (obj.value == "" && obj.name == "roomNo") {
+                        data["roomNo"] = ""
+                    } else if (obj.value != "") {
+                        data[obj.name] = obj.value;
+                    }
+                });
+                var email = data["email"]
+                data = JSON.stringify(data)
+                console.log(data)
+                $.ajax({
+                    url: '/api/studentlogin/' + email, // url where to submit the request
+                    type: "PUT", // type of action POST || GET
+                    data: data, // post data || get data
+                    dataType: 'json',
+                    contentType: "application/json; charset=utf-8",
+
+                    success: function (result) {
+                        // you can see the result from the console
+                        // tab of the developer tools
+                        console.log(result);
+                        document.getElementById("success").innerText =
+                            "STUDENT UPDATED SUCCESSFULLY"
+                    },
+                    error: function (xhr, resp, text) {
+                        console.log(xhr, resp, text);
+                        document.getElementById("success").innerText =
+                            "ERROR IN UPDATING STUDENT!!!GIVE PROPER DETAILS"
+                    }
+                })
+
+            });
+        });
+    </script>
+
+    <script>
+        var myData;
+        $(document.body).ready(function (e) {
+            //doStuff
+            console.log("hello");
+            $.ajax({
+                type: "GET",
+                url: "/api/availRoom",
+                success: function (result) {
+                    myData = result;
+                    console.log(myData);
+                    $(myData).each(function (index, obj) {
+                        $("#roomNo").append(
+                            `<option value="${obj.roomNo}">Room No: ${obj.roomNo}</option>`
+                        );
+                    });
+                },
+            });
+        });
+    </script>
+
+</body>
+
+</html>
